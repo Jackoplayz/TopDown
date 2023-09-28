@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float sprintMultiplier;
-    public Rigidbody rigidBody;
+    public Rigidbody2D rigidBody2D;
 
 
     // Start is called before the first frame update
@@ -65,6 +65,6 @@ public class Player : MonoBehaviour
             moveDirection += Vector3.down;
         }
 
-        rigidBody.velocity = moveDirection * speed * sprint;
+       rigidBody2D.velocity = moveDirection * speed * sprint;
     }
 }
