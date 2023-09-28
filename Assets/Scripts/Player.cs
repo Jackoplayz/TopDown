@@ -23,12 +23,12 @@ public class Player : MonoBehaviour
         Vector3 newCameraPosition = new Vector3(transform.position.x, transform.position.y, -5);
 
         Camera.main.transform.position = newCameraPosition;
+
+        SetLookDirection();
     }
 
     private void FixedUpdate()
-    {
-        SetLookDirection();
-        
+    {             
         Vector3 moveDirection = Vector3.zero;
 
         float sprint = 1;
