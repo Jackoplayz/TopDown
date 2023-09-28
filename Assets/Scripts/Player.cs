@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
 
 {
     public float speed;
+    public float sprintMultiplier;
     public Rigidbody rigidBody;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,32 +35,36 @@ public class Player : MonoBehaviour
         float angle = Vector3.SignedAngle(relativePos, Vector3.down, Vector3.forward);
         transform.rotation = Quaternion.Euler(0, 0, -angle);
 
+
         Vector3 moveDirection = Vector3.zero;
+
+        float sprint = 1;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sprint = sprintMultiplier;
+        }
+
 
         if (Input.GetKey(KeyCode.D))
         {
-            // rigidBody.AddForce(Vector3.right * speed);
-            moveDirection += Vector3.right * speed;           
+            moveDirection += Vector3.right;           
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            //  rigidBody.AddForce(Vector3.left * speed);
-            moveDirection += Vector3.left * speed;
+            moveDirection += Vector3.left;
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            //  rigidBody.AddForce(Vector3.up * speed);
-            moveDirection += Vector3.up * speed;
+            moveDirection += Vector3.up;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            //  rigidBody.AddForce(Vector3.down * speed);
-            moveDirection += Vector3.down * speed;
+            moveDirection += Vector3.down;
         }
 
-        rigidBody.velocity = moveDirection;
+        rigidBody.velocity = moveDirection * speed * sprint;
     }
 }
