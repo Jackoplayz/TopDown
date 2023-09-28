@@ -26,16 +26,9 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {                     
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 look = new Vector3(ray.origin.x, ray.origin.y, 0);          
-
-        Vector3 relativePos = look - transform.position;
-
-        float angle = Vector3.SignedAngle(relativePos, Vector3.down, Vector3.forward);
-        transform.rotation = Quaternion.Euler(0, 0, -angle);
-
-
+    {
+        SetLookDirection();
+        
         Vector3 moveDirection = Vector3.zero;
 
         float sprint = 1;
@@ -66,5 +59,17 @@ public class Player : MonoBehaviour
         }
 
        rigidBody2D.velocity = moveDirection * speed * sprint;
+    }
+
+    private void SetLookDirection()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Vector3 lookDirection = ray.origin - transform.position;
+        lookDirection.z = 0;
+
+        float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
+
+        transform.rotation = Quaternion.Euler(0, 0, -angle);
     }
 }
