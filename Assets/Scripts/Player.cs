@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float sprintMultiplier;
+    public float bulletSpawnOffset = 0.3f;
     public Rigidbody2D rigidBody2D;
     public GameObject bulletPrefab;
 
@@ -81,14 +82,20 @@ public class Player : MonoBehaviour
     }
 
     private void SpawnBullet()
-    {
-        var bulletInstance = Instantiate(bulletPrefab, rigidBody2D.position, Quaternion.identity);
-
+    {      
+        //Get the direction of the mouse click
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 lookDirection = ray.origin - transform.position;
         lookDirection.z = 0;
+        //Normalize sets vector magnitude (the length) to 1
+        lookDirection = lookDirection.normalized;
 
-        bulletInstance.GetComponent<Bullet>().SetVelocity(lookDirection.normalized);
+
+        Vector3 spawnPostion = transform.position + (bulletSpawnOffset * lookDirection);
+
+        var bulletInstance = Instantiate(bulletPrefab, spawnPostion, Quaternion.identity);
+
+        bulletInstance.GetComponent<Bullet>().SetVelocity(lookDirection);
 
         float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
         bulletInstance.transform.rotation = Quaternion.Euler(0, 0, -angle);
