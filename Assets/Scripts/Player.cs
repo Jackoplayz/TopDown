@@ -9,12 +9,12 @@ public class Player : MonoBehaviour
     public float speed;
     public float sprintMultiplier;
     public Rigidbody2D rigidBody2D;
-
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,7 +25,18 @@ public class Player : MonoBehaviour
         Camera.main.transform.position = newCameraPosition;
 
         SetLookDirection();
+
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            //Debug.Log("Mouseclicks");
+            var bulletInstance = Instantiate(bulletPrefab, rigidBody2D.position, Quaternion.identity);
+            bulletInstance.GetComponent<Bullet>().SetVelocity(Vector2.down);
+        }
+
     }
+
+
 
     private void FixedUpdate()
     {             
@@ -59,7 +70,13 @@ public class Player : MonoBehaviour
         }
 
        rigidBody2D.velocity = moveDirection * speed * sprint;
+
+      
+
+
     }
+
+
 
     private void SetLookDirection()
     {

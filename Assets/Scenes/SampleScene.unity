@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3041,6 +3041,7 @@ MonoBehaviour:
   speed: 8
   sprintMultiplier: 2
   rigidBody2D: {fileID: 1858810039}
+  bulletPrefab: {fileID: 467866077229217277, guid: 5fe12d589ae4d1340bb6d199bee3e629, type: 3}
 --- !u!212 &1858810042
 SpriteRenderer:
   m_ObjectHideFlags: 0
