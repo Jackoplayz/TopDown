@@ -31,7 +31,12 @@ public class Player : MonoBehaviour
         {
             //Debug.Log("Mouseclicks");
             var bulletInstance = Instantiate(bulletPrefab, rigidBody2D.position, Quaternion.identity);
-            bulletInstance.GetComponent<Bullet>().SetVelocity(Vector2.down);
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 lookDirection = ray.origin - transform.position;
+            lookDirection.z = 0;
+
+            bulletInstance.GetComponent<Bullet>().SetVelocity(lookDirection.normalized);
         }
 
     }
