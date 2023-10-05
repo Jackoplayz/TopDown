@@ -26,22 +26,11 @@ public class Player : MonoBehaviour
 
         SetLookDirection();
 
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //Debug.Log("Mouseclicks");
-            var bulletInstance = Instantiate(bulletPrefab, rigidBody2D.position, Quaternion.identity);
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 lookDirection = ray.origin - transform.position;
-            lookDirection.z = 0;
-
-            bulletInstance.GetComponent<Bullet>().SetVelocity(lookDirection.normalized);
+            SpawnBullet();
         }
-
     }
-
-
 
     private void FixedUpdate()
     {             
@@ -74,11 +63,7 @@ public class Player : MonoBehaviour
             moveDirection += Vector3.down;
         }
 
-       rigidBody2D.velocity = moveDirection * speed * sprint;
-
-      
-
-
+       rigidBody2D.velocity = moveDirection * speed * sprint;    
     }
 
 
@@ -93,5 +78,19 @@ public class Player : MonoBehaviour
         float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
 
         transform.rotation = Quaternion.Euler(0, 0, -angle);
+    }
+
+    private void SpawnBullet()
+    {
+        var bulletInstance = Instantiate(bulletPrefab, rigidBody2D.position, Quaternion.identity);
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 lookDirection = ray.origin - transform.position;
+        lookDirection.z = 0;
+
+        bulletInstance.GetComponent<Bullet>().SetVelocity(lookDirection.normalized);
+
+        float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
+        bulletInstance.transform.rotation = Quaternion.Euler(0, 0, -angle);
     }
 }
