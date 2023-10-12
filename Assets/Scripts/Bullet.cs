@@ -3,12 +3,14 @@ using System;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
-
+    public float timer = 0;
     public float speed;
     public Rigidbody2D rigidBody2D;
+    public float lifespan = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +22,11 @@ public class Bullet : MonoBehaviour
     void Update()
     {
 
-
-
+        timer += Time.deltaTime;
+        if (lifespan<timer)
+        {
+           Destroy(gameObject);
+        }
 
     }
     public void SetVelocity(Vector2 direction) 
