@@ -40,7 +40,17 @@ public class Bullet : MonoBehaviour
 
 
 
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.name.Equals("Zombie"))
+        {
+            Debug.Log("Killed Zombie");
+            Destroy(other.gameObject);
+        }
 
+       
+    }
 }
 
 
