@@ -101,3 +101,4 @@ public class Player : MonoBehaviour
         bulletInstance.transform.rotation = Quaternion.Euler(0, 0, -angle);
     }
 }
+

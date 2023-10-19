@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     public float speed;
     public Rigidbody2D rigidBody2D;
     public float lifespan = 5;
+    public int damage;
 
     // Start is called before the first frame update
     void Start()
@@ -38,19 +39,18 @@ public class Bullet : MonoBehaviour
     
     }
 
-
-
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(other.gameObject.name);
-        if (other.gameObject.name.Equals("Zombie"))
+       // Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name.Equals("Zombie"))
         {
-            Debug.Log("Killed Zombie");
-            Destroy(other.gameObject);
-        }
 
-       
+            Zombie zombie = collision.gameObject.GetComponent<Zombie>();
+            zombie.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
+  
 }
 
 
