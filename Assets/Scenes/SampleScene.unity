@@ -36023,6 +36023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8427714e2f263ef41b0c45e60632e270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   health: 100
 --- !u!1 &705507993
 GameObject:
@@ -36365,6 +36366,7 @@ MonoBehaviour:
   bulletSpawnOffset: 0.3
   rigidBody2D: {fileID: 1858810039}
   bulletPrefab: {fileID: 467866077229217277, guid: 5fe12d589ae4d1340bb6d199bee3e629, type: 3}
+  health: 100
 --- !u!212 &1858810042
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    public int damage;
     public int health;
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,17 @@ public class Zombie : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name.Equals("Player2D"))
+        {
 
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.TakeDamage(damage);
+            
+        }
+    }
 
 
 

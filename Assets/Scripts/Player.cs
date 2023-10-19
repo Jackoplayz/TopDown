@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float bulletSpawnOffset = 0.3f;
     public Rigidbody2D rigidBody2D;
     public GameObject bulletPrefab;
-
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,5 +100,18 @@ public class Player : MonoBehaviour
         float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
         bulletInstance.transform.rotation = Quaternion.Euler(0, 0, -angle);
     }
-}
+
+
+    public void TakeDamage(int damage)
+    {
+        health = health - damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+
+
+        }
+
+
+}   }
 
