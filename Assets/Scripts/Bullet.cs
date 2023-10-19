@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
        // Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.name.Equals("Zombie"))
+        if (collision.gameObject.tag.Equals("Zombie"))
         {
 
             Zombie zombie = collision.gameObject.GetComponent<Zombie>();

@@ -2,24 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class Zombie : MonoBehaviour
 {
     public int damage;
     public int health;
+    public Player player;
+    public Rigidbody2D rigidBody2D;
     // Start is called before the first frame update
     void Start()
     {
-      
+        player = GameObject.Find("Player2D").GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-   
-    
+        FollowPlayer();    
+    }
+
+    void FollowPlayer()
+    {
+        if (player.health <= 0) return;
+
+        Vector3 lookDirection = player.transform.position - transform.position;
+        lookDirection.z = 0;
+        lookDirection = lookDirection.normalized;
+
+        float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
+        transform.rotation = Quaternion.Euler(0, 0, -angle);
+
+        rigidBody2D.velocity = lookDirection;
     }
 
 
@@ -29,10 +41,7 @@ public class Zombie : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-
-
         }
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -40,10 +49,8 @@ public class Zombie : MonoBehaviour
         // Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name.Equals("Player2D"))
         {
-
             Player player = collision.gameObject.GetComponent<Player>();
-            player.TakeDamage(damage);
-            
+            player.TakeDamage(damage);            
         }
     }
 

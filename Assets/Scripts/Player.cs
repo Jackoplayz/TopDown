@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rigidBody2D;
     public GameObject bulletPrefab;
     public int health;
+    public SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -107,11 +108,7 @@ public class Player : MonoBehaviour
         health = health - damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
-
-
+            spriteRenderer.enabled = false;
         }
-
-
 }   }
 
