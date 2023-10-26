@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Zombie : MonoBehaviour
 {
@@ -41,6 +42,9 @@ public class Zombie : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            GameObject ControllerObject = GameObject.Find("GameController");
+            GameController Controller = ControllerObject.GetComponent<GameController>();
+            Controller.zombieCounter = Controller.zombieCounter - 1;
         }
     }
 
@@ -54,10 +58,4 @@ public class Zombie : MonoBehaviour
         }
     }
 
-
-
-
-
-
 }
-
