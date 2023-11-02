@@ -8,10 +8,9 @@ using UnityEngine.UIElements;
 public class Bullet : MonoBehaviour
 {
     public float timer = 0;
-    public float speed;
     public Rigidbody2D rigidBody2D;
     public float lifespan = 5;
-    public int damage;
+    float damage, speed;
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +31,13 @@ public class Bullet : MonoBehaviour
     }
     public void SetVelocity(Vector2 direction) 
     {
-        rigidBody2D.velocity = direction * speed;
-    
-    
-    
-    
+        rigidBody2D.velocity = direction * speed;  
+    }
+
+    public void Initialise(float damage, float speed)
+    {
+        this.damage = damage;
+        this.speed = speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

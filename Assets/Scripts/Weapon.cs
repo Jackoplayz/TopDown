@@ -1,12 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon 
+public abstract class Weapon : MonoBehaviour
 {
-    public static float coolDown, damage;
-    public static GameObject projectile;
-    public abstract void Fire();
-    
+    public float coolDown, damage, projectileSpeed, bulletSpawnOffset, coolDownTimer;
+    public GameObject projectile;
+    public bool readyToFire;
+    public void Fire() {
+        if (!readyToFire) return;
+
+        readyToFire = false;
+        coolDownTimer = 0;
+
+        FireEffect();
+    }
+
+    public abstract void FireEffect();
+   
+    private void Start()
+    {
+        coolDownTimer = 0;
+        readyToFire = true;
+    }
+
+    private void Update()
+    {
+        if (!readyToFire)
+        {
+            coolDownTimer += Time.deltaTime;
+            if(coolDownTimer > coolDown)
+            {
+                readyToFire = true;
+            }
+        }
+    }
 
 }

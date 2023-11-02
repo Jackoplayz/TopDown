@@ -1,10 +1,9 @@
 
 using System;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
-
 {
     public float speed;
     public float sprintMultiplier;
@@ -13,10 +12,15 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public int health;
     public SpriteRenderer spriteRenderer;
+
+    public Pistol pistol;
+    List<Weapon> weapons = new List<Weapon>();
+    Weapon selectedWeapon;
     // Start is called before the first frame update
     void Start()
     {
-
+        weapons.Add(pistol);
+        selectedWeapon = weapons[0];
     }
 
     // Update is called once per frame
@@ -30,7 +34,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SpawnBullet();
+           selectedWeapon.Fire();
         }
     }
 
@@ -68,8 +72,6 @@ public class Player : MonoBehaviour
        rigidBody2D.velocity = moveDirection * speed * sprint;    
     }
 
-
-
     private void SetLookDirection()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -80,28 +82,7 @@ public class Player : MonoBehaviour
         float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
 
         transform.rotation = Quaternion.Euler(0, 0, -angle);
-    }
-
-    private void SpawnBullet()
-    {      
-        //Get the direction of the mouse click
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 lookDirection = ray.origin - transform.position;
-        lookDirection.z = 0;
-        //Normalize sets vector magnitude (the length) to 1
-        lookDirection = lookDirection.normalized;
-
-
-        Vector3 spawnPostion = transform.position + (bulletSpawnOffset * lookDirection);
-
-        var bulletInstance = Instantiate(bulletPrefab, spawnPostion, Quaternion.identity);
-
-        bulletInstance.GetComponent<Bullet>().SetVelocity(lookDirection);
-
-        float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
-        bulletInstance.transform.rotation = Quaternion.Euler(0, 0, -angle);
-    }
-
+    }  
 
     public void TakeDamage(int damage)
     {

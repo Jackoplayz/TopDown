@@ -6,7 +6,7 @@ using UnityEngine.XR;
 public class Zombie : MonoBehaviour
 {
     public int damage;
-    public int health;
+    public float health;
     public Player player;
     public Rigidbody2D rigidBody2D;
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class Zombie : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health = health - damage;
         if (health <= 0)
