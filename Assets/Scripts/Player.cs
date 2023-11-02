@@ -14,13 +14,15 @@ public class Player : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     public Pistol pistol;
+    public Rifle rifle;
     List<Weapon> weapons = new List<Weapon>();
     Weapon selectedWeapon;
     // Start is called before the first frame update
     void Start()
     {
         weapons.Add(pistol);
-        selectedWeapon = weapons[0];
+        weapons.Add(rifle);
+        selectedWeapon = weapons[1];
     }
 
     // Update is called once per frame
