@@ -38,9 +38,13 @@ public class Zombie : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //Check zombies health before applying damage, if it's already dead, then return
+        if (health <= 0) return;
+
         health = health - damage;
         if (health <= 0)
         {
+            Debug.Log("Zombies health was less than zero");
             Destroy(gameObject);
             GameObject ControllerObject = GameObject.Find("GameController");
             GameController Controller = ControllerObject.GetComponent<GameController>();
