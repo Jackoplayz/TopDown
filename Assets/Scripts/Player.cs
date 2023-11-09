@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     public Pistol pistol;
     public Rifle rifle;
+    public Shotgun shotgun;
     List<Weapon> weapons = new List<Weapon>();
     Weapon selectedWeapon;
     // Start is called before the first frame update
@@ -22,7 +23,8 @@ public class Player : MonoBehaviour
     {
         weapons.Add(pistol);
         weapons.Add(rifle);
-        selectedWeapon = weapons[1];
+        weapons.Add(shotgun);
+        selectedWeapon = weapons[2];
     }
 
     // Update is called once per frame

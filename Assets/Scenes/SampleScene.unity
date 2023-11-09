@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -35862,6 +35862,59 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &563041733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 563041735}
+  - component: {fileID: 563041734}
+  m_Layer: 0
+  m_Name: Shotgun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &563041734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563041733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc29246fd16ef3449ddbb627ea7c09a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 1.5
+  damage: 17
+  projectileSpeed: 20
+  bulletSpawnOffset: 0.3
+  coolDownTimer: 0
+  projectile: {fileID: 467866077229217277, guid: 5fe12d589ae4d1340bb6d199bee3e629, type: 3}
+  readyToFire: 0
+  maxSpreadDegrees: 10
+  projectileCount: 12
+--- !u!4 &563041735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563041733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1858810043}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -36053,7 +36106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 0.1
-  damage: 10
+  damage: 15
   projectileSpeed: 15
   bulletSpawnOffset: 0.3
   coolDownTimer: 0
@@ -36361,6 +36414,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1858810042}
   pistol: {fileID: 878079826}
   rifle: {fileID: 1458993893}
+  shotgun: {fileID: 563041734}
 --- !u!212 &1858810042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36427,6 +36481,7 @@ Transform:
   m_Children:
   - {fileID: 878079825}
   - {fileID: 1458993894}
+  - {fileID: 563041735}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
