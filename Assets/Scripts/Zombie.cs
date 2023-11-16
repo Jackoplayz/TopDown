@@ -44,7 +44,7 @@ public class Zombie : MonoBehaviour
         health = health - damage;
         if (health <= 0)
         {
-            Debug.Log("Zombies health was less than zero");
+
             Destroy(gameObject);
             GameObject ControllerObject = GameObject.Find("GameController");
             GameController Controller = ControllerObject.GetComponent<GameController>();

@@ -12,24 +12,45 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public int health;
     public SpriteRenderer spriteRenderer;
-
+    public UIController UI;
     public Pistol pistol;
     public Rifle rifle;
     public Shotgun shotgun;
     List<Weapon> weapons = new List<Weapon>();
     Weapon selectedWeapon;
+    int selectedWeaponIndex;
     // Start is called before the first frame update
     void Start()
     {
         weapons.Add(pistol);
         weapons.Add(rifle);
         weapons.Add(shotgun);
-        selectedWeapon = weapons[2];
+        selectedWeaponIndex = 0;
+        selectedWeapon = weapons[selectedWeaponIndex];
+        UI.SetSelectedWeapon(selectedWeaponIndex);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") !=0)
+        {
+            if(Input.GetAxis("Mouse ScrollWheel") >0)
+            {
+                if (selectedWeaponIndex == weapons.Count -1)
+                {
+                    selectedWeaponIndex = 0;
+                }
+                else
+                {
+                    selectedWeaponIndex++;
+                }
+                selectedWeapon = weapons[selectedWeaponIndex];
+                             UI.SetSelectedWeapon(selectedWeaponIndex);
+            }
+        }
+        
+      
         Vector3 newCameraPosition = new Vector3(transform.position.x, transform.position.y, -5);
 
         Camera.main.transform.position = newCameraPosition;
