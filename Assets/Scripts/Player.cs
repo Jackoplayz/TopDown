@@ -33,8 +33,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") !=0)
-        {
+        
             if(Input.GetAxis("Mouse ScrollWheel") >0)
             {
                 if (selectedWeaponIndex == weapons.Count -1)
@@ -48,9 +47,22 @@ public class Player : MonoBehaviour
                 selectedWeapon = weapons[selectedWeaponIndex];
                              UI.SetSelectedWeapon(selectedWeaponIndex);
             }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            if (selectedWeaponIndex == 0)
+            {
+                selectedWeaponIndex = weapons.Count - 1;
+            }
+            else
+            {
+                selectedWeaponIndex--;
+            }
+            selectedWeapon = weapons[selectedWeaponIndex];
+            UI.SetSelectedWeapon(selectedWeaponIndex);
         }
-        
-      
+
+
+
         Vector3 newCameraPosition = new Vector3(transform.position.x, transform.position.y, -5);
 
         Camera.main.transform.position = newCameraPosition;
