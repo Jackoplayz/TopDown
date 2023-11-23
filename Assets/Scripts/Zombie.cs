@@ -5,6 +5,7 @@ using UnityEngine.XR;
 
 public class Zombie : MonoBehaviour
 {
+    public GameController gameController;
     public int damage;
     public float health;
     public Player player;
@@ -13,11 +14,17 @@ public class Zombie : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player2D").GetComponent<Player>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!gameController.gameRunning)
+        {
+            rigidBody2D.velocity = Vector2.zero;
+            return;
+        }
         FollowPlayer();    
     }
 

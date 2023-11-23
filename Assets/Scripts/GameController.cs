@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class GameController : MonoBehaviour
 {
+    public Player player;
+    public bool gameRunning = true;
     public Tilemap tilemap;
     public GameObject zombiePrefab;
     public int minX, minY, maxY, maxX;
@@ -18,12 +20,27 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player.health <= 0)
+        {
+            gameRunning = false;
+        }
+        if (!gameRunning)
+        {
+            return;
+        }
         if (zombieCounter<maxZombies)
         {
 
             SpawnZombie();
 
         }
+
+    }
+    public void RestartGame()
+    {
+        gameRunning = true;
+        player.health = 100;
+        player.spriteRenderer.enabled = true;
     }
 
     void SpawnZombie()
