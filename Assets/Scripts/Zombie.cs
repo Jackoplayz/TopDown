@@ -52,10 +52,11 @@ public class Zombie : MonoBehaviour
         if (health <= 0)
         {
 
-            Destroy(gameObject);
+           
             GameObject ControllerObject = GameObject.Find("GameController");
             GameController Controller = ControllerObject.GetComponent<GameController>();
-            Controller.zombieCounter = Controller.zombieCounter - 1;
+            
+            Controller.KillZombie(gameObject);
         }
     }
 

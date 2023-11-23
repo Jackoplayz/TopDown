@@ -1,17 +1,19 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using System.Linq;
 public class GameController : MonoBehaviour
 {
+    List<GameObject> zombies = new List<GameObject>();
     public Player player;
     public bool gameRunning = true;
     public Tilemap tilemap;
     public GameObject zombiePrefab;
     public int minX, minY, maxY, maxX;
     public int maxZombies = 10;
-    public int zombieCounter = 0;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class GameController : MonoBehaviour
         {
             return;
         }
-        if (zombieCounter<maxZombies)
+        if (zombies.Count<maxZombies)
         {
 
             SpawnZombie();
@@ -41,6 +43,7 @@ public class GameController : MonoBehaviour
         gameRunning = true;
         player.health = 100;
         player.spriteRenderer.enabled = true;
+        KillAllZombies();
     }
 
     void SpawnZombie()
@@ -60,11 +63,24 @@ public class GameController : MonoBehaviour
         if (tile != null)
         {
 
-            Instantiate(zombiePrefab, position, Quaternion.identity);
-            zombieCounter = zombieCounter + 1;
+            var zombie = Instantiate(zombiePrefab, position, Quaternion.identity);
+            zombies.Add(zombie);
         }
-
-    }
         
 
-}
+    }
+        public void KillZombie(GameObject zombie)
+        {
+        zombies.Remove(zombie);
+        Destroy(zombie);
+        }
+        void KillAllZombies()
+        {
+         while (zombies.Count > 0)
+         {
+            KillZombie(zombies[0]);
+         }
+
+        
+        }
+}       
