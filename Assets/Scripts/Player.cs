@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+    public GameController gameController;
     public float speed;
     public float sprintMultiplier;
     public float bulletSpawnOffset = 0.3f;
@@ -33,8 +34,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-            if(Input.GetAxis("Mouse ScrollWheel") >0)
+        if (!gameController.gameRunning)
+        {
+            rigidBody2D.velocity = Vector2.zero;
+            return;
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") >0)
             {
                 if (selectedWeaponIndex == weapons.Count -1)
                 {
@@ -76,7 +81,12 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {             
+    {
+        if (!gameController.gameRunning)
+        {
+            rigidBody2D.velocity = Vector2.zero;
+            return;
+        }
         Vector3 moveDirection = Vector3.zero;
 
         float sprint = 1;
