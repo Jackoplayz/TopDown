@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public Button restartButton;
     public GameObject restartpanal;
     public GameController gameController;
-    public TMP_Text healthText;
+    public TMP_Text healthText, killText;
     public Player player;
     public float deselectedScale, selectedScale;
     public Image pistolImage, rifleImage, shotgunImage;
@@ -22,6 +22,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         healthText.text = player.health.ToString();
+        killText.text ="Kills Remaining " + (gameController.killLimit - gameController.killCount);
         if (gameController.gameRunning)
         {
             restartpanal.SetActive(false);

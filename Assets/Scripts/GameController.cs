@@ -7,6 +7,8 @@ using System.Linq;
 public class GameController : MonoBehaviour
 {
     List<GameObject> zombies = new List<GameObject>();
+    public int killCount;
+    public int killLimit;
     public Player player;
     public bool gameRunning = true;
     public Tilemap tilemap;
@@ -17,12 +19,12 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        killCount = 0;
     }
     // Update is called once per frame
     void Update()
     {
-        if (player.health <= 0)
+        if (player.health <= 0 || killCount >= killLimit)
         {
             gameRunning = false;
         }
@@ -36,7 +38,7 @@ public class GameController : MonoBehaviour
             SpawnZombie();
 
         }
-
+        
     }
     public void RestartGame()
     {
@@ -44,6 +46,7 @@ public class GameController : MonoBehaviour
         player.health = 100;
         player.spriteRenderer.enabled = true;
         KillAllZombies();
+        killCount = 0;
     }
 
     void SpawnZombie()
@@ -71,14 +74,16 @@ public class GameController : MonoBehaviour
     }
         public void KillZombie(GameObject zombie)
         {
-        zombies.Remove(zombie);
-        Destroy(zombie);
+         zombies.Remove(zombie);
+         Destroy(zombie);
+         killCount++;
         }
         void KillAllZombies()
         {
          while (zombies.Count > 0)
          {
             KillZombie(zombies[0]);
+
          }
 
         
