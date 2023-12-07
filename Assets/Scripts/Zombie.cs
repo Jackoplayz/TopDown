@@ -6,13 +6,20 @@ using UnityEngine.XR;
 public class Zombie : MonoBehaviour
 {
     public GameController gameController;
+    public float speed;
+    public float minSpeed, maxSpeed;
     public int damage;
     public float health;
+    public int minHealth, maxHealth;
+    public int minDamage, maxDamage;
     public Player player;
     public Rigidbody2D rigidBody2D;
     // Start is called before the first frame update
     void Start()
     {
+        speed = Random.Range(minSpeed, maxSpeed);
+        damage = Random.Range(minDamage, maxDamage);
+        health = Random.Range(minHealth, maxHealth);
         player = GameObject.Find("Player2D").GetComponent<Player>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
@@ -39,7 +46,7 @@ public class Zombie : MonoBehaviour
         float angle = Vector3.SignedAngle(lookDirection, Vector3.down, Vector3.forward);
         transform.rotation = Quaternion.Euler(0, 0, -angle);
 
-        rigidBody2D.velocity = lookDirection;
+        rigidBody2D.velocity = lookDirection * speed;
     }
 
 

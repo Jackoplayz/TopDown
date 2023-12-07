@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8859708480945311668
 SpriteRenderer:
@@ -161,7 +161,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8427714e2f263ef41b0c45e60632e270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 0}
+  speed: 0
+  minSpeed: 3
+  maxSpeed: 13
   damage: 10
   health: 100
-  playerTransform: {fileID: 0}
+  minHealth: 25
+  maxHealth: 150
+  minDamage: 5
+  maxDamage: 20
+  player: {fileID: 0}
   rigidBody2D: {fileID: 4696818080709280537}

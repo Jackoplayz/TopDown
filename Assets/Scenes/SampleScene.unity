@@ -36326,7 +36326,6 @@ MonoBehaviour:
   maxY: 0
   maxX: 0
   maxZombies: 10
-  zombieCounter: 0
 --- !u!4 &862142837
 Transform:
   m_ObjectHideFlags: 0
@@ -37164,6 +37163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71c3ef0037e3e64d9f087ff662a7245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 862142836}
   speed: 8
   sprintMultiplier: 2
   bulletSpawnOffset: 0.3
